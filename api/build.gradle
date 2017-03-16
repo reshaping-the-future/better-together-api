@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    // publish with: ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+    repoName = 'better-together'
+    groupId = 'ac.robinson.bettertogether'
+    artifactId = 'api'
+    publishVersion = '1.0.0'
+    licences = ['Apache-2.0']
+    desc = 'Better Together API'
+    website = 'https://github.com/reshaping-the-future/better-together-api'
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 25
+        versionCode 1
+        versionName '1.0.0'
+
+        // see: http://stackoverflow.com/a/31031491/1993220 and http://stackoverflow.com/a/27052696/1993220
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.google.code.findbugs:annotations:3.0.1', {
+        // need to exclude these, or build is broken by: DexException: Multiple dex files define Lnet/jcip/annotations/GuardedBy;
+        // see: https://github.com/noveogroup/android-check/issues/22
+        exclude module: 'jsr305'
+        exclude module: 'jcip-annotations'
+    }
+}
