@@ -53,7 +53,7 @@ public class DefaultActivity extends AppCompatActivity {
 
 		try {
 			startActivity(intent);
-			if (betterTogetherIsInstalled) {
+			if (!betterTogetherIsInstalled) {
 				Toast.makeText(DefaultActivity.this, R.string.hint_install_better_together, Toast.LENGTH_SHORT).show();
 			}
 		} catch (Exception ignored) {
