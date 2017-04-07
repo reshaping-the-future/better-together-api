@@ -14,6 +14,8 @@ publish {
 }
 
 android {
+    // TODO: use resourcePrefix 'bt_' or similar to manage conflicts?
+
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
 
@@ -30,7 +32,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.google.code.findbugs:annotations:3.0.1', {
         // need to exclude these, or build is broken by: DexException: Multiple dex files define Lnet/jcip/annotations/GuardedBy;
         // see: https://github.com/noveogroup/android-check/issues/22
