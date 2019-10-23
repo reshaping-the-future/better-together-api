@@ -9,7 +9,7 @@ publish {
     artifactId = 'api'
     publishVersion = '1.0.1'
     licences = ['Apache-2.0']
-    uploadName = 'better-together-api'
+    uploadName = 'api'
     desc = 'Better Together API'
     website = 'https://github.com/reshaping-the-future/better-together-api'
 }
