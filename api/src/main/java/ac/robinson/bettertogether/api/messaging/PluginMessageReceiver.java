@@ -18,7 +18,7 @@ package ac.robinson.bettertogether.api.messaging;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * This class exists so we can direct our broadcast messages at a specific app-related receiver (for privacy/security), rather

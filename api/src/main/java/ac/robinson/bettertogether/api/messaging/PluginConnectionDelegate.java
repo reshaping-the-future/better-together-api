@@ -22,11 +22,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * For more direct integration with your app, use this connection helper class to send and receive messages. You must first
@@ -66,7 +64,6 @@ public class PluginConnectionDelegate {
 		LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mLocalBroadcastReceiver);
 	}
 
-	@SuppressFBWarnings("ANDROID_BROADCAST")
 	public void sendMessage(@NonNull BroadcastMessage message) {
 		Intent intent = new Intent();
 		intent.setAction(PluginIntent.ACTION_MESSAGE_RECEIVED);

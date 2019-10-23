@@ -3,10 +3,11 @@ apply plugin: 'com.novoda.bintray-release'
 
 publish {
     // publish with: ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+    userOrg = 'simonrobinson'
     repoName = 'better-together'
     groupId = 'ac.robinson.bettertogether'
     artifactId = 'api'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     licences = ['Apache-2.0']
     uploadName = 'better-together-api'
     desc = 'Better Together API'
@@ -16,12 +17,11 @@ publish {
 android {
     // TODO: use resourcePrefix 'bt_' or similar to manage conflicts?
 
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 28
         versionCode 1
         versionName '1.0.0'
         resConfigs 'en'
@@ -32,11 +32,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.google.code.findbugs:annotations:3.0.1', {
-        // need to exclude these, or build is broken by: DexException: Multiple dex files define Lnet/jcip/annotations/GuardedBy;
-        // see: https://github.com/noveogroup/android-check/issues/22
-        exclude module: 'jsr305'
-        exclude module: 'jcip-annotations'
-    }
+    //noinspection GradleDependency - we can't yet upgrade past 1.0.2 as LocalBroadcastManager is abruptly deprecated and will need refactoring and testing
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    implementation 'androidx.annotation:annotation:1.1.0'
 }

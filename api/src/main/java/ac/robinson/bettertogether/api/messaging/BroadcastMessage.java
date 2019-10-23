@@ -16,7 +16,7 @@
 
 package ac.robinson.bettertogether.api.messaging;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Base64;
 
 import java.io.ByteArrayInputStream;
@@ -30,8 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 /**
  * BroadcastMessages are the objects sent between connected devices. To send a message, create an instance of this class, then
@@ -123,7 +121,6 @@ public class BroadcastMessage implements Serializable {
 		return mIsSystemMessage;
 	}
 
-	@SuppressFBWarnings("OBJECT_DESERIALIZATION") // we need to be able to serialize to send objects over the local connection
 	public static BroadcastMessage fromString(String message) throws IOException, ClassNotFoundException {
 		byte[] data = Base64.decode(message, Base64.DEFAULT);
 		ObjectInputStream objectInputStream = new ObjectInputStream(new GZIPInputStream(new ByteArrayInputStream(data)));
