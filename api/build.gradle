@@ -2,38 +2,38 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 publish {
-    // publish with: ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
-    userOrg = 'simonrobinson'
-    repoName = 'better-together'
-    groupId = 'ac.robinson.bettertogether'
-    artifactId = 'api'
-    publishVersion = '1.0.1'
-    licences = ['Apache-2.0']
-    uploadName = 'api'
-    desc = 'Better Together API'
-    website = 'https://github.com/reshaping-the-future/better-together-api'
+	// publish with: ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+	userOrg = 'simonrobinson'
+	repoName = 'better-together'
+	groupId = 'ac.robinson.bettertogether'
+	artifactId = 'api'
+	publishVersion = '1.0.1'
+	licences = ['Apache-2.0']
+	uploadName = 'api'
+	desc = 'Better Together API'
+	website = 'https://github.com/reshaping-the-future/better-together-api'
 }
 
 android {
-    // TODO: use resourcePrefix 'bt_' or similar to manage conflicts?
+	// TODO: use resourcePrefix 'bt_' or similar to manage conflicts?
 
-    compileSdkVersion 28
+	compileSdkVersion 28
 
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 1
-        versionName '1.0.0'
-        resConfigs 'en'
+	defaultConfig {
+		minSdkVersion 14
+		targetSdkVersion 28
+		versionCode 1
+		versionName '1.0.0'
+		resConfigs 'en'
 
-        // see: http://stackoverflow.com/a/31031491/1993220 and http://stackoverflow.com/a/27052696/1993220
-        consumerProguardFiles 'proguard-rules.pro'
-    }
+		// see: http://stackoverflow.com/a/31031491/1993220 and http://stackoverflow.com/a/27052696/1993220
+		consumerProguardFiles 'proguard-rules.pro'
+	}
 }
 
 dependencies {
-    //noinspection GradleDependency - we can't yet upgrade past 1.0.2 as LocalBroadcastManager is abruptly deprecated and will need refactoring and testing
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+	//noinspection GradleDependency - we can't yet upgrade past 1.0.2 as LocalBroadcastManager is abruptly deprecated
+	implementation 'androidx.appcompat:appcompat:1.0.2' // (new version after 1.0.2 will need major refactoring and testing)
 
-    implementation 'androidx.annotation:annotation:1.1.0'
+	implementation 'androidx.annotation:annotation:1.1.0'
 }
