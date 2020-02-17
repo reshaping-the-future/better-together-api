@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2017 The Better Together Toolkit
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,4 +15,4 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools"
-           tools:keep="@string/bt_plugin_prefix"/>
+	tools:keep="@string/bt_plugin_prefix" />

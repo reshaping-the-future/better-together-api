@@ -18,6 +18,7 @@ package ac.robinson.bettertogether.api.messaging;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
@@ -28,7 +29,11 @@ public class PluginMessageReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, android.content.Intent intent) {
-		switch (intent.getAction()) {
+		String action = intent.getAction();
+		if (action == null) {
+			return;
+		}
+		switch (action) {
 			case PluginIntent.ACTION_STOP_PLUGIN:
 				LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 				break;

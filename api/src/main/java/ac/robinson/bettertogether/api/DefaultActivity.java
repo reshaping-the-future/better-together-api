@@ -16,36 +16,40 @@
 
 package ac.robinson.bettertogether.api;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import java.util.List;
 
 import ac.robinson.bettertogether.api.messaging.PluginIntent;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * This activity is launched if the user tries to start a plugin directly (e.g., from Google Play). If Better Together is
  * installed, it is opened; otherwise, the Play Store is launched and directed to the Better Together download page.
  */
-@SuppressLint("Registered")
 public class DefaultActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTheme(android.R.style.Theme_Translucent_NoTitleBar); // try to avoid any visual appearance of this activity
 
 		Intent intent;
 		boolean betterTogetherIsInstalled = betterTogetherIsInstalled();
 		if (betterTogetherIsInstalled) {
 			// TODO: add flags to indicate we are coming from a specific plugin?
 			intent = getPackageManager().getLaunchIntentForPackage(PluginIntent.HOST_PACKAGE);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			if (intent != null) {
+				intent.putExtra(PluginIntent.EXTRA_RESUME, true);
+			} else {
+				// probably not much else we can do
+				Toast.makeText(DefaultActivity.this, R.string.hint_launch_error, Toast.LENGTH_SHORT).show();
+			}
 		} else {
 			intent = new Intent(Intent.ACTION_VIEW, PluginIntent.MARKET_HOST_APP);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

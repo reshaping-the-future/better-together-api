@@ -12,7 +12,7 @@ Developing a plugin is the simplest way to create services using the Better Toge
 To add Better Together to your project, add it as a dependency to your `build.gradle`.
 
 ```groovy
-implementation 'ac.robinson.bettertogether:api:1.0.1'
+implementation 'ac.robinson.bettertogether:api:1.0.2'
 ```
 
 ## Sending and receiving messages
@@ -51,7 +51,7 @@ For a fully documented example of the configuration options available (including
 
 
 ## Development tips
-Plugins are loaded and unloaded dynamically, so you do not need to restart the Better Together host app (or disconnect from other devices) when developing or deploying updates.
+Plugins are loaded and unloaded dynamically, so you do not need to restart the Better Together host app (or disconnect from other devices) when developing or deploying updates. For this to work well with Android Studio without a launcher Activity, you may need to go to Run > Edit Configurations… and set the Launch Options for your plugin's configuration to launch Nothing (rather than Default Activity).
 
 If your plugin does not provide a launcher Activity, you can import the default activity from the plugin API for a better experience when installing plugins from Google Play. When launched, `DefaultActivity` will open Better Together if it is installed. If not, it will open Google Play to the Better Together app's page.
 

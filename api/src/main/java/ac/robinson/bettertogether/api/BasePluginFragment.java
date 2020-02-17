@@ -16,13 +16,15 @@
 
 package ac.robinson.bettertogether.api;
 
+import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.widget.Toast;
 
 import ac.robinson.bettertogether.api.messaging.BroadcastMessage;
 import ac.robinson.bettertogether.api.messaging.PluginConnectionDelegate;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * For fragment-based apps, extend this fragment to create your own plugin. As in {@link BasePluginActivity}, the methods
@@ -37,12 +39,19 @@ public abstract class BasePluginFragment extends Fragment {
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Activity activity = getActivity();
+		if (activity == null) {
+			// probably not much else we can do
+			Toast.makeText(getContext(), R.string.hint_launch_error, Toast.LENGTH_SHORT).show();
+			return;
+		}
+
 		mDelegate = new PluginConnectionDelegate(getActivity(), mMessageReceivedCallback);
 		mDelegate.onCreate(savedInstanceState);
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle outState) {
+	public void onSaveInstanceState(@NonNull Bundle outState) {
 		mDelegate.onSaveInstanceState(outState);
 		super.onSaveInstanceState(outState);
 	}
@@ -53,8 +62,8 @@ public abstract class BasePluginFragment extends Fragment {
 		mDelegate.onDestroy();
 	}
 
-	private final PluginConnectionDelegate.PluginMessageCallback mMessageReceivedCallback = new PluginConnectionDelegate
-			.PluginMessageCallback() {
+	private final PluginConnectionDelegate.PluginMessageCallback mMessageReceivedCallback =
+			new PluginConnectionDelegate.PluginMessageCallback() {
 		@Override
 		public void onMessageReceived(@NonNull BroadcastMessage message) {
 			BasePluginFragment.this.onMessageReceived(message);
@@ -66,6 +75,7 @@ public abstract class BasePluginFragment extends Fragment {
 	 *
 	 * @param message the message to send
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void sendMessage(@NonNull BroadcastMessage message) {
 		mDelegate.sendMessage(message);
 	}
@@ -75,5 +85,6 @@ public abstract class BasePluginFragment extends Fragment {
 	 *
 	 * @param message the message received
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected abstract void onMessageReceived(@NonNull BroadcastMessage message);
 }

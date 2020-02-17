@@ -17,13 +17,13 @@
 package ac.robinson.bettertogether.api;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import ac.robinson.bettertogether.api.messaging.BroadcastMessage;
 import ac.robinson.bettertogether.api.messaging.PluginConnectionDelegate;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Extend this activity to create your own plugin. The methods {@link #sendMessage(BroadcastMessage)} and
@@ -42,7 +42,7 @@ public abstract class BasePluginActivity extends AppCompatActivity {
 	}
 
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
+	protected void onSaveInstanceState(@NonNull Bundle outState) {
 		mDelegate.onSaveInstanceState(outState);
 		super.onSaveInstanceState(outState);
 	}
@@ -55,17 +55,16 @@ public abstract class BasePluginActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case android.R.id.home:
-				// NavUtils.navigateUpFromSameTask(BaseHotspotActivity.this); // only API 16+; requires manifest tag
-				finish();
-				return true;
+		if (item.getItemId() == android.R.id.home) {
+			// NavUtils.navigateUpFromSameTask(BaseHotspotActivity.this); // only API 16+; requires manifest tag
+			finish();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	private final PluginConnectionDelegate.PluginMessageCallback mMessageReceivedCallback = new PluginConnectionDelegate
-			.PluginMessageCallback() {
+	private final PluginConnectionDelegate.PluginMessageCallback mMessageReceivedCallback =
+			new PluginConnectionDelegate.PluginMessageCallback() {
 		@Override
 		public void onMessageReceived(@NonNull BroadcastMessage message) {
 			BasePluginActivity.this.onMessageReceived(message);

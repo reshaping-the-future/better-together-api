@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -71,7 +72,10 @@ public class PluginConnectionDelegate {
 		intent.putExtra(PluginIntent.KEY_BROADCAST_MESSAGE, message);
 
 		// note: source is only necessary for internal plugins - it may be removed at a later date
-		intent.putExtra(PluginIntent.EXTRA_SOURCE, PluginMessageCallback.class.getPackage().toString());
+		Package internalSourcePackage = PluginMessageCallback.class.getPackage();
+		if (internalSourcePackage != null) {
+			intent.putExtra(PluginIntent.EXTRA_SOURCE, internalSourcePackage.toString());
+		}
 
 		mContext.sendBroadcast(intent);
 	}
@@ -80,11 +84,19 @@ public class PluginConnectionDelegate {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// note: source is only necessary for internal plugins - it may be removed at a later date
-			if (PluginMessageCallback.class.getPackage().toString().equals(intent.getStringExtra(PluginIntent.EXTRA_SOURCE))) {
-				return; // ignore this message - its source is us
+			Package internalSourcePackage = PluginMessageCallback.class.getPackage();
+			if (internalSourcePackage != null) {
+				if (internalSourcePackage.toString().equals(intent.getStringExtra(PluginIntent.EXTRA_SOURCE))) {
+					return; // ignore this message - its source is us
+				}
 			}
 
-			switch (intent.getAction()) {
+			String action = intent.getAction();
+			if (action == null) {
+				return;
+			}
+
+			switch (action) {
 				case PluginIntent.ACTION_STOP_PLUGIN:
 					if (mContext instanceof Activity) {
 						((Activity) mContext).finish();
@@ -92,8 +104,8 @@ public class PluginConnectionDelegate {
 					break;
 
 				case PluginIntent.ACTION_MESSAGE_RECEIVED:
-					BroadcastMessage message = (BroadcastMessage) intent.getSerializableExtra(PluginIntent
-							.KEY_BROADCAST_MESSAGE);
+					BroadcastMessage message =
+							(BroadcastMessage) intent.getSerializableExtra(PluginIntent.KEY_BROADCAST_MESSAGE);
 					mMessageCallback.onMessageReceived(message);
 					break;
 

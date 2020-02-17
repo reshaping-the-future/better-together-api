@@ -16,7 +16,6 @@
 
 package ac.robinson.bettertogether.api.messaging;
 
-import androidx.annotation.Nullable;
 import android.util.Base64;
 
 import java.io.ByteArrayInputStream;
@@ -31,11 +30,13 @@ import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import androidx.annotation.Nullable;
+
 /**
  * BroadcastMessages are the objects sent between connected devices. To send a message, create an instance of this class, then
  * use the send and receive methods of plugin activity or fragment classes to handle message events.
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({ "WeakerAccess", "unused" })
 public class BroadcastMessage implements Serializable {
 
 	public static final int TYPE_DEFAULT = 0;
