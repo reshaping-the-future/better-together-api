@@ -36,8 +36,8 @@ public class DefaultActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setTheme(android.R.style.Theme_Translucent_NoTitleBar); // try to avoid any visual appearance of this activity
+		super.onCreate(savedInstanceState);
 
 		Intent intent;
 		boolean betterTogetherIsInstalled = betterTogetherIsInstalled();

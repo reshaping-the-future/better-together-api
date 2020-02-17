@@ -5,7 +5,7 @@ A documented [sample plugin](https://github.com/reshaping-the-future/better-toge
 
 Developing a plugin is the simplest way to create services using the Better Together framework. However, if you'd prefer deeper integration, it is possible to add its connectivity to your own app. See, for example, [swarachakra keyboard](https://github.com/IDC-IITBombay/swarachakra-android/tree/bt_remote_keyboard), which enables remote text input in Indic scripts.
 
-[ ![Download](https://api.bintray.com/packages/simonrobinson/better-together/api/images/download.svg?version=1.0.1) ](https://bintray.com/simonrobinson/better-together/api/1.0.1/link)
+[ ![Download](https://api.bintray.com/packages/simonrobinson/better-together/api/images/download.svg) ](https://bintray.com/simonrobinson/better-together/api/_latestVersion)
 
 
 ## Adding to your project
