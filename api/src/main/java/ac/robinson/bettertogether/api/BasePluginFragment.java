@@ -42,7 +42,7 @@ public abstract class BasePluginFragment extends Fragment {
 		Activity activity = getActivity();
 		if (activity == null) {
 			// probably not much else we can do
-			Toast.makeText(getContext(), R.string.hint_launch_error, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getContext(), R.string.bt_hint_launch_error, Toast.LENGTH_SHORT).show();
 			return;
 		}
 

@@ -16,10 +16,10 @@
 
 <resources>
 	<!-- This string is used as a filter for plugin application names - if your plugin name starts with -->
-	<!-- "Better Together plugin: " then this string be removed from the title displayed in the Better  -->
-	<!-- Together host application, which will make your plugin easier to recognise.                    -->
+	<!-- "Better Together plugin: " then this string will be removed from the title displayed in the    -->
+	<!-- Better Together host application, which will make your plugin easier to recognise.             -->
 	<string name="bt_plugin_prefix">Better Together plugin:</string>
 
-	<string name="hint_install_better_together">This app is a plugin – please install Better Together to continue</string>
-	<string name="hint_launch_error">Error: unable to open application</string>
+	<string name="bt_hint_install_better_together">This app is a plugin – please install Better Together to continue</string>
+	<string name="bt_hint_launch_error">Error: unable to open application</string>
 </resources>

@@ -105,7 +105,6 @@ public final class PluginIntent {
 
 	// global intent parameters - for internal use
 	public static final String HOST_PACKAGE = "ac.robinson.bettertogether";
-	public static final String EXTRA_RESUME = "ac.robinson.bettertogether.intent.extra.RESUME";
 	public static final String MESSAGE_RECEIVER = "ac.robinson.bettertogether.api.messaging.PluginMessageReceiver";
 
 	// intent Uris for directing to the Play store (see DefaultActivity) - for internal use

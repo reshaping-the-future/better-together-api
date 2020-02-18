@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
 
 ext {
-	apiVersion = '1.0.2'
+	apiVersionCode = 3
+	apiVersionName = '1.0.3'
 }
 
 // slightly hacky way to ensure that this library can easily be used as both a local and remote dependency
@@ -13,7 +14,7 @@ if (this.name == 'api') {
 		repoName = 'better-together'
 		groupId = 'ac.robinson.bettertogether'
 		artifactId = 'api'
-		publishVersion = apiVersion
+		publishVersion = apiVersionName
 		licences = ['Apache-2.0']
 		uploadName = 'api'
 		desc = 'Better Together API'
@@ -22,16 +23,15 @@ if (this.name == 'api') {
 }
 
 android {
-	// TODO: use resourcePrefix 'bt_' or similar to manage conflicts?
-
 	compileSdkVersion 28
 
 	defaultConfig {
 		minSdkVersion 14
 		targetSdkVersion 28
-		versionCode 2
-		versionName apiVersion
+		versionCode apiVersionCode
+		versionName apiVersionName
 		resConfigs 'en'
+		resourcePrefix 'bt_'
 
 		// see: http://stackoverflow.com/a/31031491/1993220 and http://stackoverflow.com/a/27052696/1993220
 		consumerProguardFiles 'proguard-rules.pro'

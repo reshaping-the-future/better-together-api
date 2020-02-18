@@ -35,9 +35,6 @@ public class PluginMessageReceiver extends BroadcastReceiver {
 		}
 		switch (action) {
 			case PluginIntent.ACTION_STOP_PLUGIN:
-				LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-				break;
-
 			case PluginIntent.ACTION_MESSAGE_RECEIVED:
 				LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 				break;

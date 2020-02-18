@@ -36,8 +36,7 @@ public class DefaultActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		setTheme(android.R.style.Theme_Translucent_NoTitleBar); // try to avoid any visual appearance of this activity
-		super.onCreate(savedInstanceState);
+		setTheme(android.R.style.Theme_NoDisplay); // try to avoid any visual appearance of this activity
 
 		Intent intent;
 		boolean betterTogetherIsInstalled = betterTogetherIsInstalled();
@@ -45,27 +44,32 @@ public class DefaultActivity extends AppCompatActivity {
 			// TODO: add flags to indicate we are coming from a specific plugin?
 			intent = getPackageManager().getLaunchIntentForPackage(PluginIntent.HOST_PACKAGE);
 			if (intent != null) {
-				intent.putExtra(PluginIntent.EXTRA_RESUME, true);
-			} else {
-				// probably not much else we can do
-				Toast.makeText(DefaultActivity.this, R.string.hint_launch_error, Toast.LENGTH_SHORT).show();
+				intent.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
 			}
 		} else {
 			intent = new Intent(Intent.ACTION_VIEW, PluginIntent.MARKET_HOST_APP);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		}
 
-		try {
-			startActivity(intent);
-			if (!betterTogetherIsInstalled) {
-				Toast.makeText(DefaultActivity.this, R.string.hint_install_better_together, Toast.LENGTH_SHORT).show();
+		boolean error = intent == null;
+		if (!error) {
+			try {
+				startActivity(intent);
+				if (!betterTogetherIsInstalled) {
+					Toast.makeText(DefaultActivity.this, R.string.bt_hint_install_better_together, Toast.LENGTH_SHORT).show();
+				}
+			} catch (Exception ignored) {
+				error = true;
 			}
-		} catch (Exception ignored) {
+		}
+
+		if (error) {
 			// probably not much else we can do
-			Toast.makeText(DefaultActivity.this, R.string.hint_launch_error, Toast.LENGTH_SHORT).show();
+			Toast.makeText(DefaultActivity.this, R.string.bt_hint_launch_error, Toast.LENGTH_SHORT).show();
 		}
 
 		finish();
+		super.onCreate(savedInstanceState);
 	}
 
 	private boolean betterTogetherIsInstalled() {
