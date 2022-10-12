@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
   ~ Copyright (C) 2017 The Better Together Toolkit
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +14,15 @@
   ~ permissions and limitations under the License.
   -->
 
-<manifest package="ac.robinson.bettertogether.api"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<!-- All plugins must use the Better Together permission in order to send and receive messages -->
-	<uses-permission
-		android:name="ac.robinson.bettertogether.permission.BETTER_TOGETHER"/>
+	<uses-permission android:name="ac.robinson.bettertogether.permission.BETTER_TOGETHER" />
+
+	<!-- Allow searching for the host app's package (API 30+) -->
+	<queries>
+		<package android:name="ac.robinson.bettertogether" />
+	</queries>
 
 	<!-- The plugin message receiver handles messages received from the background service that manages -->
 	<!-- Better Together connections. It simply forwards messages to any locally connected clients. -->
@@ -30,8 +32,8 @@
 			android:exported="true"
 			android:permission="ac.robinson.bettertogether.permission.BETTER_TOGETHER">
 			<intent-filter>
-				<action android:name="ac.robinson.bettertogether.intent.action.STOP_PLUGIN"/>
-				<action android:name="ac.robinson.bettertogether.intent.action.MESSAGE_RECEIVED"/>
+				<action android:name="ac.robinson.bettertogether.intent.action.STOP_PLUGIN" />
+				<action android:name="ac.robinson.bettertogether.intent.action.MESSAGE_RECEIVED" />
 			</intent-filter>
 		</receiver>
 	</application>

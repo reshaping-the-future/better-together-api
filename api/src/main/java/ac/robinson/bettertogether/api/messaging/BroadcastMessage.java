@@ -44,6 +44,7 @@ public class BroadcastMessage implements Serializable {
 
 	private final static long serialVersionUID = 1;
 
+	@SuppressWarnings("CharsetObjectCanBeUsed") // requires API level 19; we support down to 14
 	public static final Charset CHARSET = Charset.forName("UTF-8");
 
 	private final int mType;

@@ -74,6 +74,7 @@ public class DefaultActivity extends AppCompatActivity {
 
 	private boolean betterTogetherIsInstalled() {
 		PackageManager packageManager = getPackageManager();
+		// TODO: double-check package visibility filtering (https://developer.android.com/training/package-visibility)
 		final List<PackageInfo> installedPackages = packageManager.getInstalledPackages(0);
 		for (final PackageInfo packageInfo : installedPackages) {
 			if (PluginIntent.HOST_PACKAGE.equals(packageInfo.packageName)) {

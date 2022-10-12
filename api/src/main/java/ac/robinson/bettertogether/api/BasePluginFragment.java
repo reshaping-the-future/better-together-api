@@ -63,12 +63,7 @@ public abstract class BasePluginFragment extends Fragment {
 	}
 
 	private final PluginConnectionDelegate.PluginMessageCallback mMessageReceivedCallback =
-			new PluginConnectionDelegate.PluginMessageCallback() {
-		@Override
-		public void onMessageReceived(@NonNull BroadcastMessage message) {
-			BasePluginFragment.this.onMessageReceived(message);
-		}
-	};
+			BasePluginFragment.this::onMessageReceived;
 
 	/**
 	 * Used to send messages to all other connected devices.

@@ -106,7 +106,9 @@ public class PluginConnectionDelegate {
 				case PluginIntent.ACTION_MESSAGE_RECEIVED:
 					BroadcastMessage message =
 							(BroadcastMessage) intent.getSerializableExtra(PluginIntent.KEY_BROADCAST_MESSAGE);
-					mMessageCallback.onMessageReceived(message);
+					if (message != null) {
+						mMessageCallback.onMessageReceived(message);
+					}
 					break;
 
 				default:

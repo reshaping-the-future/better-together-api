@@ -5,29 +5,31 @@ ext {
 	apiVersionName = '1.0.3'
 }
 
+// TODO: switch to, e.g., Maven Central and re-release
 // slightly hacky way to ensure that this library can easily be used as both a local and remote dependency
-if (this.name == 'api') {
-	apply plugin: 'com.novoda.bintray-release'
-	publish {
-		// publish with: ./gradlew clean build bintrayUpload -PbintrayUser=USERNAME -PbintrayKey=KEY -PdryRun=false
-		userOrg = 'simonrobinson'
-		repoName = 'better-together'
-		groupId = 'ac.robinson.bettertogether'
-		artifactId = 'api'
-		publishVersion = apiVersionName
-		licences = ['Apache-2.0']
-		uploadName = 'api'
-		desc = 'Better Together API'
-		website = 'https://github.com/reshaping-the-future/better-together-api'
-	}
-}
+// if (this.name == 'api') {
+// 	apply plugin: 'com.novoda.bintray-release'
+// 	publish {
+// 		// publish with: ./gradlew clean build bintrayUpload -PbintrayUser=USERNAME -PbintrayKey=KEY -PdryRun=false
+// 		userOrg = 'simonrobinson'
+// 		repoName = 'better-together'
+// 		groupId = 'ac.robinson.bettertogether'
+// 		artifactId = 'api'
+// 		publishVersion = apiVersionName
+// 		licences = ['Apache-2.0']
+// 		uploadName = 'api'
+// 		desc = 'Better Together API'
+// 		website = 'https://github.com/reshaping-the-future/better-together-api'
+// 	}
+// }
 
 android {
-	compileSdkVersion 28
+	namespace 'ac.robinson.bettertogether.api'
+	compileSdkVersion 32
 
 	defaultConfig {
 		minSdkVersion 14
-		targetSdkVersion 28
+		targetSdkVersion 32
 		versionCode apiVersionCode
 		versionName apiVersionName
 		resConfigs 'en'
@@ -40,8 +42,8 @@ android {
 
 dependencies {
 	// TODO: LocalBroadcastManager is deprecated - will need refactoring in a future release
-	implementation 'androidx.appcompat:appcompat:1.1.0'
-	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+	implementation 'androidx.appcompat:appcompat:1.5.1'
+	implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 
-	implementation 'androidx.annotation:annotation:1.1.0'
+	implementation 'androidx.annotation:annotation:1.5.0'
 }

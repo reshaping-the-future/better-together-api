@@ -5,15 +5,34 @@ A documented [sample plugin](https://github.com/reshaping-the-future/better-toge
 
 Developing a plugin is the simplest way to create services using the Better Together framework. However, if you'd prefer deeper integration, it is possible to add its connectivity to your own app. See, for example, [swarachakra keyboard](https://github.com/IDC-IITBombay/swarachakra-android/tree/bt_remote_keyboard), which enables remote text input in Indic scripts.
 
-[ ![Download](https://api.bintray.com/packages/simonrobinson/better-together/api/images/download.svg) ](https://bintray.com/simonrobinson/better-together/api/_latestVersion)
-
 
 ## Adding to your project
 To add Better Together to your project, add it as a dependency to your `build.gradle`.
 
 ```groovy
-implementation 'ac.robinson.bettertogether:api:1.0.2'
+implementation 'ac.robinson.bettertogether:api:1.0.3'
 ```
+
+The project has not yet been migrated away from the now-discontinued BinTray platform, so you may also need to update the `allprojects` section of your project-level `build.gradle` file:
+
+```groovy
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        // required to import the Better Together API (version 1.0.3 and older)
+        jcenter() {
+            content {
+                // allow only this module, ensuring other libraries are still retrieved from current repositories
+                includeModule('ac.robinson.bettertogether', 'api')
+            }
+        }
+
+    }
+}
+```
+
 
 ## Sending and receiving messages
 Message are sent to and received from other devices using `PluginConnectionDelegate`. The simplest way to incorporate this into your project is to extend `BasePluginActivity` or `BasePluginFragment`.

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/better-together-api.iml" filepath="$PROJECT_DIR$/better-together-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/better-together-api.iml" filepath="$PROJECT_DIR$/.idea/modules/better-together-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/better-together-api.api.iml" filepath="$PROJECT_DIR$/.idea/modules/api/better-together-api.api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/better-together-api.api.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/api/better-together-api.api.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/better-together-api.api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api/better-together-api.api.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/better-together-api.api.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/api/better-together-api.api.unitTest.iml" />
     </modules>
   </component>
 </project>

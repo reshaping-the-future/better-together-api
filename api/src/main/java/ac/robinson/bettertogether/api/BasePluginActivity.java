@@ -64,12 +64,7 @@ public abstract class BasePluginActivity extends AppCompatActivity {
 	}
 
 	private final PluginConnectionDelegate.PluginMessageCallback mMessageReceivedCallback =
-			new PluginConnectionDelegate.PluginMessageCallback() {
-		@Override
-		public void onMessageReceived(@NonNull BroadcastMessage message) {
-			BasePluginActivity.this.onMessageReceived(message);
-		}
-	};
+			BasePluginActivity.this::onMessageReceived;
 
 	/**
 	 * Used to send messages to all other connected devices.
